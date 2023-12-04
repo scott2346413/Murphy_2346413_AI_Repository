@@ -1,0 +1,124 @@
+﻿title: SciFiAwake
+tags:
+---
+<<declare $currentObject = "donut">>
+
+<<declare $missionExplained = false>>
+<<declare $fabricatorExplained = false>>
+
+//ALIEN RACES
+// The three main alien races are Phirakians, Glopites and Echolyths
+// Phirakians are a hostile military race you are trying to make peace with
+// Glopites are a friendly race of slime creatures
+// Echolyths are an ancient, peaceful and spiritual people
+
+// As you make peace with the phirakians you are given a choice to "screw over" the glopites
+// This may cause the Echolyths to intervene
+// by the end the three outcomes are war with Phira, war with Glopites and Echolyths, and neutrality with all three
+
+//reputations. 0 = hostile. 1 = neutral. 2 = friendly. 3 = ally
+<<declare $PhirakianReputation = 0>>
+<<declare $GlopiteReputation = 2>>
+<<declare $Echolyths = 1>>
+
+<<jump RobotIntro>>
+===
+
+title: RobotIntro
+tags:
+---
+Robot: Goodmorning Captain! Sleep Well? #line:GoodmorningCaptain 
+-> Where am I? #line:04e34c3 
+    Robot: Ah, I see the cryo-sleep has affected your memory again #line:Cryosleep 
+    Robot: No bother! Long story short, you're aboard a space craft #line:0541f63 
+-> Who are you? #line:02718c4 
+    Robot: Shoot, your sleeping pod has given you temporary amnesia again. I must get that fixed #line:SleepingPod 
+    Robot: I'm Robot, your digital holographic assistant! #line:009527b 
+-> What's going on? #line:0787c07 
+    Robot: Hmm, seems the sleeping pod hasn't been fixed yet. That'll explain why you can't remember anything #line:SleepingPodNotFixed 
+    Robot: You've just awoken from a 2 month cryo sleep #line:03b35ab 
+    Robot: We're heading to the planet Phira to make peace talks with the Phirakians #line:078d25b 
+    <<set $missionExplained = true>>
+
+Robot: Now that we've caught up... #line:09985ae 
+Robot: Welcome to the Scout! The fastest and greatest explorer vessel in the galaxy! #line:0224c5d 
+Robot: And you're our captain! #line:004ce1d 
+
+<<if $missionExplained is true>>
+-> Vessel? You mean like a space craft? This doesn't look like a space craft though #line:0d49249 
+    Robot: That's thanks to the PHOH - Projected Hologram Of Home #line:0e30281 
+    Robot: PHOH makes the space deck look a little more familiar to you #line:0946105
+-> Will be be on Phira soon? #line:0a2f14a 
+    Robot: In a few minutes, affirmative #line:09ea11e
+<<else>>
+-> Vessel? You mean like a space craft? This doesn't look like a space craft though #line:08bd0a2 
+    Robot: That's thanks to the PHOH - Projected Hologram Of Home #line:06134fa 
+    Robot: PHOH makes the space deck look a little more familiar to you #line:0534114
+-> Okay so, what exactly are we doing? #line:0e29b0e 
+    Robot: Currently, we're close to arriving at the planet Phira #line:0c7e7e1 
+    Robot: You have been chosen to make peace talks with the Phirakians #line:02ee28b
+    <<set $missionExplained to true>>
+<<endif>>
+
+<<if $missionExplained == true>>
+<<jump PhirakianEncounter>>
+<<else>>
+<<jump PhirakianSurpriseEncounter>>
+<<endif>>
+
+===
+
+title: PhirakianSurpriseEncounter
+tags:
+---
+THIS WILL PLAY IF MISSION WAS NOT EXPLAINED #line:0939bdd 
+<<set $currentObject to "Glopite">>
+<<spawn_object AlienSpawner>>
+===
+
+title: PhirakianEncounter
+tags:
+---
+THIS WILL PLAY IF MISSION WAS EXPLAINED #line:09830ec 
+<<set $currentObject to "Phirakian">>
+<<spawn_object AlienSpawner>>
+===
+
+title: IntroduceFabricator
+tags:
+---
+Robot: Let me introduce you to the V.E.F.! #line:0998f5f 
+
+-> What's a V.E.F.? #line:090a799 
+    Robot: Your V.E.F., or Very Elaborate Fabricator, is used to create objects #line:0d6cdce 
+
+Robot: First, lets place it somewhere #line:0983504 
+<<follow_infront Robot>>
+Robot: Stand facing an empty space, you'll need a lot of room #line:058bb3d 
+Robot: Press continue, and I'll place it for you #line:048c973 
+<<place_fabricator ObjectPlacer>>
+Robot: Perfect! #line:0891993 
+<<stop_follow_infront Robot>>
+
+-> How does it work? #line:0f61a4e
+    Robot: Whenever you need something, I'll configure it to that object #line:0b51611 
+    Robot: When the green button lights up, its ready #line:08ea309 
+    Robot: Do you want to give it a try? #line:0bc2666 
+    <<set $fabricatorExplained = true>>
+    -> Let's do it! #line:0e22d5c 
+        Robot: Excellent! I'll load up something simple for you #line:0ef307e 
+        <<set $currentFabricatorObject = "donut">>
+        <<jump FabricatorTest>>
+    -> Maybe later #line:0e36bcf 
+        Robot: Of course! Don't be shy to use it as much as you like either #line:0fb849d 
+
+===
+
+title: FabricatorTest
+tags:
+---
+Robot: Just press the button when you're ready! #line:06dfdf4 
+<<set $active = true>>
+<<set_active Fabricator>>
+<<load_object Fabricator>>
+===

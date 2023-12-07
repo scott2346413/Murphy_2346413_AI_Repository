@@ -433,7 +433,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2912613983994299230}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
@@ -481,8 +481,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 8734477318732996202}
   animator: {fileID: -1188355238608688595}
-  _waitTime: 1.2
-  wanderDistance: 4
+  _waitTime: 3
+  wanderDistance: 0.5
 --- !u!1 &3105708699363827044
 GameObject:
   m_ObjectHideFlags: 0

@@ -113,5 +113,27 @@ public class NPC3D : MonoBehaviour
             canvasActive = false;
         }
     }
+
+    [YarnCommand("start_dialogue")]
+    public void StartDialogue()
+    {
+        if (!string.IsNullOrEmpty(talkToNode))
+        {
+            if (dialogueCanvas != null)
+            {
+                //move the Canvas to the object and off set
+                canvasActive = true;
+                dialogueCanvas.transform.SetParent(transform); // use the root to prevent scaling
+                dialogueCanvas.GetComponent<RectTransform>().anchoredPosition3D = transform.TransformVector(PostionSpeachBubble);
+            }
+
+            if (dialogueRunner.IsDialogueRunning)
+            {
+                dialogueRunner.Stop();
+            }
+            Debug.Log("start dialogue");
+            dialogueRunner.StartDialogue(talkToNode);
+        }
+    }
 }
 

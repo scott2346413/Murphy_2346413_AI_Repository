@@ -20,7 +20,7 @@ public class followNearPlayer : MonoBehaviour
         {
             Vector3 newDestination = player.position + player.forward * standOffset.z + player.right * standOffset.x;
 
-            if(Vector3.Distance(newDestination, agent.transform.position) > 2f)
+            if(Vector3.Distance(newDestination, agent.transform.position) > 2.2f)
             {
                 agent.SetDestination(newDestination);
             }

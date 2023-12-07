@@ -17,6 +17,7 @@ tags:
 <<declare $missionExplained = false>>
 <<declare $phirakiansProposeAlliance = false>>
 <<declare $agreeToHelpGlopites = false>>
+<<declare $phirakiansInsulted = false>>
 
 <<declare $typeOfHelp = "">>
 ===
@@ -26,57 +27,56 @@ tags:
 ---
 <<if $scene == 0>>
 <<jump RobotIntro>>
+<<elseif $scene == 3>>
+<<jump RobotFinal>>
 <<endif>>
 ===
 
 title: RobotIntro
 tags:
 ---
-Robot: Goodmorning Captain! Sleep Well? #line:GoodmorningCaptain 
--> Where am I? #line:04e34c3 
-    Robot: Ah, I see the cryo-sleep has affected your memory again #line:Cryosleep 
-    Robot: No bother! Long story short, you're aboard a space craft #line:0541f63 
+Robot: Goodmorning Captain! Sleep Well? #line:GoodmorningCaptain
+Robot: You were out a long time #line:RobotSound
+-> Where am I? #line:0d5adf5 
+    Robot: Do not panic. The cryo sleep has affected your memory
+    Robot: You are aboard a space craft #line:0541f63
 -> Who are you? #line:02718c4 
-    Robot: Shoot, your sleeping pod has given you temporary amnesia again. I must get that fixed #line:SleepingPod 
-    Robot: I'm Robot, your digital holographic assistant! #line:009527b 
+    Robot: Your sleeping pod has given you amnesia. I will make sure I fix that  #line:0cba7da
+    Robot: I'm ADA, your Automated Digital Assistant! #line:009527b
 -> What's going on? #line:0787c07 
-    Robot: Hmm, seems the sleeping pod hasn't been fixed yet. That'll explain why you can't remember anything #line:SleepingPodNotFixed 
-    Robot: You've just awoken from a 2 month cryo sleep #line:03b35ab 
-    Robot: We're heading to the planet Phira to make peace talks with the Phirakians #line:078d25b 
+    Robot: The memory unit is faulty on your sleeping pod. That explains your amnesia  #line:072230b
+    Robot: You've just awoken from a 2 month cryosleep #line:03b35ab
+    Robot: Our destination is the planet Phira. You are to make peace talks with the Phirakians #line:078d25b
     <<set $missionExplained to true>>
 
-Robot: Now that we've caught up... #line:09985ae 
-Robot: Welcome to the Scout! The fastest and greatest explorer vessel in the galaxy! #line:0224c5d 
-Robot: And you're our captain! #line:004ce1d 
+Robot: Allow me to formally catch you up. #line:09985ae
+Robot: Welcome to the Scout! The fastest and greatest explorer vessel in the galaxy! #line:0224c5d
+Robot: You are our designated captain! #line:004ce1d
 
 <<if $missionExplained is true>>
--> Vessel? You mean like a space craft? This doesn't look like a space craft though #line:0d49249 
-    Robot: That's thanks to the PHOH - Projected Hologram Of Home #line:0e30281 
+-> Vessel? This doesn't look like a space craft? #line:0d49249 
+    Robot: That's thanks to the PHOH - Projected Hologram Of Home #line:0e30281
     Robot: PHOH makes the space deck look a little more familiar to you #line:0946105
--> Will be be on Phira soon? #line:0a2f14a 
-    Robot: In a few minutes, affirmative #line:09ea11e
+-> Will be be on Phira soon? #line:0a2f14a
+    Robot: Affirmative. We will be in orbit any moment now #line:09ea11e
 <<else>>
--> Vessel? You mean like a space craft? This doesn't look like a space craft though #line:08bd0a2 
-    Robot: That's thanks to the PHOH - Projected Hologram Of Home #line:06134fa 
+-> Vessel? You mean like a space craft? This doesn't look like a space craft though #line:08bd0a2
+    Robot: That's thanks to the PHOH - Projected Hologram Of Home #line:06134fa
     Robot: PHOH makes the space deck look a little more familiar to you #line:0534114
 -> Okay so, what exactly are we doing? #line:0e29b0e 
-    Robot: Currently, we're close to arriving at the planet Phira #line:0c7e7e1 
-    Robot: You have been chosen to make peace talks with the Phirakians #line:02ee28b
+    Robot: Currently, we're closing in on the planet Phira #line:0c7e7e1
+    Robot: You were chosen to make peace talks with the Phirakians #line:02ee28b
     <<set $missionExplained to true>>
 <<endif>>
 
-<<if $missionExplained == true>>
 <<jump PhirakianEncounter>>
-<<else>>
-<<jump PhirakianSurpriseEncounter>>
-<<endif>>
-
 ===
 
 title: PhirakianEncounter
 tags:
 ---
-Robot: Someone is requesting to board the ship... #line:09830ec
+Robot: Hold on. Someone is requesting to board the ship #line:09830ec
+Robot: They will be onboard imminently #line:0d6907c 
 <<set $scene to 1>>
 <<set_object_phirakian AlienSpawner>>
 <<spawn_object AlienSpawner>>
@@ -86,36 +86,38 @@ title: PhirakianIntro
 tags:
 ---
 Phirakian: Greetings to you, human. My name is Pliink, the Phirakian representative #line:PhirakianGreeting 
+Phirakian: I can only stay briefly so shall we begin #line:PhirakianSound
 <<if $missionExplained == true>>
 -> Welcome aboard, Pliink. Make yourself comfortable #line:0467ecf 
-    Phirakian: You have my gratitude, Captain. Not all diplomats are as welcoming as you #line:0f85694
-    Phirakian: Perhaps Phira would be lucky to have an alliance with your colony after all
+    Phirakian: You have my gratitude, Captain. Not all diplomats are as welcoming as you
+    Phirakian: Perhaps Phira would be lucky to have an alliance with your colony after all #line:00cfc61
     <<set $phirakiansProposeAlliance to true>>
 -> Hold on, why can I understand you? #line:0cecdad 
-    Phirakian: Simple translation tech developed by Phirakian scientists #line:02e05bf 
+    Phirakian: Simple translation tech developed by Phirakian scientists #line:02e05bf
     Phirakian: We call it BUTT, Brilliant Universal Translation Technology #line:0801ca1
 <<else>>
 -> Sorry, who are you? I wasn't expecting any visitors #line:0bb56cb 
-    Phirakian: Who am I? Were you not briefed or are you just stupid #line:053b4f3 
-    Phirakian: I made the effort to come on behalf of Phira for peace talks... #line:0eb5505 
-    Phirakian: And the captain doesn't even know why I'm here! #line:08d5a19 
+    Phirakian: Who am I? Were you not briefed or are you just stupid #line:053b4f3
+    Phirakian: I made the effort to come on behalf of Phira for peace talks... #line:0eb5505
+    Phirakian: And the captain doesn't even know why I'm here! #line:08d5a19
 -> Welcome Pliink! What brings you to our ship? #line:00fee48 
-    Phirakian: I was... invited... I'm the diplomat... #line:0e82822 
-    Phirakian: Don't tell me you humans are this forgetful #line:07ba4fe 
+    Phirakian: I was... invited... I'm the diplomat... #line:0e82822
+    Phirakian: Don't tell me you humans are this forgetful #line:07ba4fe
 
 -> I'm sorry if I've offended you. It's been a long journey. Remind me? #line:096ef08 
-    Phirakian: I can forgive your insolance on regard of your efforts at least #line:0ddfaa3 
-    Phirakian: Earth and Phira have made the decision to commence peace talks #line:0052ecd 
-    Phirakian: After years of devesating war, we have come to offer an alliance #line:01d6bd6 
+    Phirakian: I can forgive your insolance on regard of your efforts at least #line:0ddfaa3
+    Phirakian: Earth and Phira have made the decision to commence peace talks #line:0052ecd
+    Phirakian: After years of devesating war, we have come to offer an alliance #line:01d6bd6
 -> Calm down! You're over reacting! #line:0ca5406 
-    Phirakian: How dare you speak such offense, earthling #line:0b02d53 
-    Phirakian: I've had enough. I shall retreat to Phira and alert our leaders #line:04a0046 
-    Phirakian: I'm sure war is in your planet's future #line:0e21f8e 
+    Phirakian: How dare you speak such offense, earthling #line:0b02d53
+    Phirakian: I've had enough. I shall retreat to Phira and alert our leaders #line:04a0046
+    Phirakian: I'm sure war is in your planet's future #line:0e21f8e
+    <<set $phirakiansInsulted to true>>
 
 <<set $missionExplained to true>>   
 <<endif>>
 
-Phirakian: I'm being called by Phira. I must leave for now
+Phirakian: I'm being called by Phira. I will return later #line:0e0d65a 
 
 <<set $scene to 2>>
 <<leave Phirakian>>
@@ -126,40 +128,85 @@ Phirakian: I'm being called by Phira. I must leave for now
 title: GlopiteIntro
 tags:
 ---
-Glopite: Human! Allow me introduce the arrival of the Glopites! #line:0ec92ac 
-Glopite: I will pause so you may applaud #line:0ba3620 
--> What brings the Glopite here? #line:087f0fe 
-    Glopite: War, human. Terrible war brings us here #line:09cccff 
--> Greetings Glopites? How may we be of service #line:04176c8 
-    Glopite: We require your help. We face great danger #line:0dfa95e 
--> We weren't expecting your intrusion #line:0aa9b5d 
-    Glopite: Intrusion? No! No! This is an emergency #line:006237e 
+Glopite: Human! Allow me introduce the arrival of the Glopites! #line:GlopiteGreeting 
+Glopite: I will pause so you may applaud #line:GlopiteSound
+-> What brings the Glopite here? #line:087f0fe
+    Glopite: War, human. Terrible war brings us here #line:09cccff #line:GlopiteSound
+-> Greetings Glopites? How may we be of service #line:04176c8 #line:GlopiteSound
+    Glopite: We require your help. We face great danger #line:0dfa95e #line:GlopiteSound
+-> We weren't expecting your intrusion #line:0aa9b5d
+    Glopite: Intrusion? No! No! This is an emergency #line:006237e #line:GlopiteSound
 
-Glopite: Our planet Glopp is being attacked by the Phirakians! #line:0e89aa0
+Glopite: Our planet Glopp is being attacked by the Phirakians! #line:0e89aa0#line:GlopiteSound
 
--> What did you do to provoke the Phirakians?
-    Glopite: Provoke? No no!
-    Glopite: The Phirakians attack without reason. They are tyrants
+-> What did you do to provoke the Phirakians? #line:03e64fd 
+    Glopite: Provoke? No no! #line:0cabf4d #line:GlopiteSound
+    Glopite: The Phirakians attack without reason. They are tyrants #line:03089a1 #line:GlopiteSound
     <<set $typeOfHelp to "earth's support">>
--> That's awful! We must prevent this assault
-    Glopite: Many thanks for your concern, captain!
-    Glopite: Your help against their forces would be appreciated greatly
+-> That's awful! We must prevent this assault #line:01fcf96 
+    Glopite: Many thanks for your concern, captain! #line:0abde92 #line:GlopiteSound
+    Glopite: Your help against their forces would be appreciated greatly #line:049ea78 #line:GlopiteSound
     <<set $typeOfHelp to "aid for the rebellion">>
--> What does your planet need?
-    Glopite: Food and medical care
-    Glopite: Many of us are starving or injured
+-> What does your planet need? #line:017e61a 
+    Glopite: Food and medical care #line:04eb8fa #line:GlopiteSound
+    Glopite: Many of us are starving or injured #line:0e1e000 #line:GlopiteSound
     <<set $typeOfHelp to "supplies">>
 
-Glopite: Please say you will help us!
+Glopite: Please say you will help us! #line:053ca7a 
 
--> We will give you {$typeOfHelp}
+-> We will give you {$typeOfHelp} #line:0c1197b 
     <<set $agreeToHelpGlopites to true>>
-    Glopite: You are a blessing to us, human
-    Glopite: You have given us hope!
--> We refuse
-    Glopite: I'd heard rumours of an alliance between you
-    Glopite: But I thought it too tragic to be true
-    Glopite: This is a dark day for the Glopites
+    Glopite: You are a blessing to us, human #line:0dbef18 #line:GlopiteSound
+    Glopite: You have given us hope! #line:022b245 #line:GlopiteSound
+-> We refuse #line:0f3eaa7 
+    Glopite: Alas, I'd heard rumours of a Human-Phirakian alliance #line:093ba4f #line:GlopiteSound
+    Glopite: But I thought it too tragic to be true #line:00a4f4f #line:GlopiteSound
+    Glopite: This is a dark day for the Glopites #line:0a4e668 #line:GlopiteSound
 
-<<leave Glopite>>
+<<leave GroupOfGlopite>>
+<<set $scene to 3>>
+<<start_dialogue Robot>>
+===
+
+title: RobotFinal
+tags:
+---
+Robot: There are many decisions to be made here captain #line:RobotSound2
+Robot: The Phiraki will be back soon to discuss terms #line:09ac4ff 
+<<if $agreeToHelpGlopites>>
+Robot: They will not be happy you are helping Glopites #line:0d07187 
+-> That's their problem #line:06d0a65 
+    Robot: Phirakian tempers are famously short #line:07b0f04 
+    Robot: Be careful #line:0bc098b 
+-> I'm sure we can find a solution #line:0574c09 
+    Robot: Peace isn't always possible #line:0e1a3a4 
+<<else>>
+Robot: Turning away the Glopites will give you good favour #line:0e82a9c 
+-> The Glopites are a weak species. It is their own fault #line:043a408 
+    Robot: A decisive and harsh outlook #line:0143871 
+    Robot: Are you sure you are not Phirakian? #line:08274c8 
+-> I hope not to lose them as allies #line:0539f9a 
+    Robot: You cannot always make everyone happy #line:092b8cd 
+<<endif>>
+
+<<if $phirakiansProposeAlliance>>
+Robot: The Phiraki proposed an alliance #line:0cfd8dc 
+Robot: That would be very beneficial to us #line:0bc17ee 
+Robot: Do you intend to accept it? #line:06e2bb9 
+<<else>>
+Robot: Do you intend to propse an alliance #line:04197bc 
+<<endif>>
+
+-> Of course. Our forces will be stronger together #line:0ed5a78 
+    Robot: I respect the military mindset #line:019006a 
+    Robot: And my data analysis supports this decision #line:067666f 
+-> Not with those cruel tyrants #line:0b73265 
+    Robot: Your moral and ethical mindset is stronger #line:01eaa59 
+    Robot: Admirable, though you shall make many enemies #line:040cb18 
+
+Robot: The Phirakian have returned and will board momentarily #line:06ed30c 
+Robot: Good luck Captain #line:0764a87 
+<<set $scene to 3>>
+<<set_object_phirakian_general AlienSpawner>>
+<<spawn_object AlienSpawner>>
 ===

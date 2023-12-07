@@ -43,6 +43,12 @@ public class SpawnAlien : MonoBehaviour
         currentObject = "Echolyth";
     }
 
+    [YarnCommand("set_object_phirakian_general")]
+    public void setObjectPhiraGeneral()
+    {
+        currentObject = "PhirakianGeneral";
+    }
+
     [YarnCommand ("spawn_object")]
     public void Spawn()
     {

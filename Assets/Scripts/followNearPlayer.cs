@@ -9,40 +9,34 @@ public class followNearPlayer : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
 
-    bool followInfront = false;
+    public Vector3 standOffset;
+
+    public Animator animator;
 
     // Update is called once per frame
     void Update()
     {
         if (agent.enabled)
         {
-            if (followInfront)
+            Vector3 newDestination = player.position + player.forward * standOffset.z + player.right * standOffset.x;
+
+            if(Vector3.Distance(newDestination, agent.transform.position) > 2f)
             {
-                agent.SetDestination(player.position + player.forward * 1f + player.right * 0.5f);
-                Vector3 lookAtPosition = player.position;
-                lookAtPosition.y = agent.transform.position.y;
-                agent.transform.LookAt(lookAtPosition);
+                agent.SetDestination(newDestination);
             }
-            else
+
+            if(agent.velocity.magnitude < 0.5f)
             {
-                agent.SetDestination(player.position + Vector3.forward * 1f + Vector3.right * 0.5f);
-                Vector3 lookAtPosition = player.position;
-                lookAtPosition.y = agent.transform.position.y;
-                agent.transform.LookAt(lookAtPosition);
+                Vector3 lookatPosition = player.position;
+                lookatPosition.y = transform.position.y;
+                Vector3 lookToward = Vector3.Lerp(transform.position + transform.forward, lookatPosition, Time.deltaTime*3);
+                transform.LookAt(lookToward);
+            }
+
+            if(animator != null)
+            {
+                animator.SetFloat("speed", agent.velocity.magnitude);
             }
         }
-        
-    }
-
-    [YarnCommand("follow_infront")]
-    public void enableFollowInfront()
-    {
-        followInfront = true;
-    }
-
-    [YarnCommand("stop_follow_infront")]
-    public void disableFollowInfront()
-    {
-        followInfront = false;
     }
 }

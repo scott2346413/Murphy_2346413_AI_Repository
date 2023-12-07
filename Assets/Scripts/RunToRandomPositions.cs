@@ -42,6 +42,6 @@ public class RunToRandomPosition : MonoBehaviour
             _waitTimer = 0f;
         }
 
-        animator.SetFloat("speed", agent.speed);
+        animator.SetFloat("speed", agent.velocity.magnitude);
     }
 }

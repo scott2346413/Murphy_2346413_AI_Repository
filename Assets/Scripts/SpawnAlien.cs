@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-public class SpawnObject : MonoBehaviour
+public class SpawnAlien : MonoBehaviour
 {
     public InMemoryVariableStorage variables;
     public Transform spawnpoint;
@@ -13,7 +13,6 @@ public class SpawnObject : MonoBehaviour
     public string[] names;
 
     string currentObject;
-    bool isActive = false;
 
     private void Start()
     {
@@ -26,18 +25,29 @@ public class SpawnObject : MonoBehaviour
         }
     }
 
-    [YarnCommand ("set_new_object")]
-    public void SetActiveSpawnObject()
+    [YarnCommand ("set_object_phirakian")]
+    public void setObjectPhirakian()
     {
-        variables.TryGetValue("currentObject", out currentObject);
+        currentObject = "Phirakian";
+    }
+
+    [YarnCommand("set_object_glopite")]
+    public void setObjectGlopite()
+    {
+        currentObject = "Glopite";
+    }
+
+    [YarnCommand("set_object_echolyth")]
+    public void setObjectEcholyth()
+    {
+        currentObject = "Echolyth";
     }
 
     [YarnCommand ("spawn_object")]
     public void Spawn()
     {
         if(currentObject == null) return;
-        if (!isActive) return;
 
-        Instantiate(objects[currentObject], spawnpoint.position, Quaternion.identity);
+        objects[currentObject].SetActive(true);
     }
 }

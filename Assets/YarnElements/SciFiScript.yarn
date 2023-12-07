@@ -1,10 +1,7 @@
-﻿title: SciFiAwake
+﻿title: Awake
 tags:
 ---
-<<declare $currentObject = "donut">>
-
-<<declare $missionExplained = false>>
-<<declare $fabricatorExplained = false>>
+<<declare $scene = 0>>
 
 //ALIEN RACES
 // The three main alien races are Phirakians, Glopites and Echolyths
@@ -16,12 +13,20 @@ tags:
 // This may cause the Echolyths to intervene
 // by the end the three outcomes are war with Phira, war with Glopites and Echolyths, and neutrality with all three
 
-//reputations. 0 = hostile. 1 = neutral. 2 = friendly. 3 = ally
-<<declare $PhirakianReputation = 0>>
-<<declare $GlopiteReputation = 2>>
-<<declare $Echolyths = 1>>
+//Deciders. Each scene decides one of these variables which determine the available endings in the final scene
+<<declare $missionExplained = false>>
+<<declare $phirakiansProposeAlliance = false>>
+<<declare $agreeToHelpGlopites = false>>
 
+<<declare $typeOfHelp = "">>
+===
+
+title: Robot
+tags:
+---
+<<if $scene == 0>>
 <<jump RobotIntro>>
+<<endif>>
 ===
 
 title: RobotIntro
@@ -38,7 +43,7 @@ Robot: Goodmorning Captain! Sleep Well? #line:GoodmorningCaptain
     Robot: Hmm, seems the sleeping pod hasn't been fixed yet. That'll explain why you can't remember anything #line:SleepingPodNotFixed 
     Robot: You've just awoken from a 2 month cryo sleep #line:03b35ab 
     Robot: We're heading to the planet Phira to make peace talks with the Phirakians #line:078d25b 
-    <<set $missionExplained = true>>
+    <<set $missionExplained to true>>
 
 Robot: Now that we've caught up... #line:09985ae 
 Robot: Welcome to the Scout! The fastest and greatest explorer vessel in the galaxy! #line:0224c5d 
@@ -68,57 +73,93 @@ Robot: And you're our captain! #line:004ce1d
 
 ===
 
-title: PhirakianSurpriseEncounter
-tags:
----
-THIS WILL PLAY IF MISSION WAS NOT EXPLAINED #line:0939bdd 
-<<set $currentObject to "Glopite">>
-<<spawn_object AlienSpawner>>
-===
-
 title: PhirakianEncounter
 tags:
 ---
-THIS WILL PLAY IF MISSION WAS EXPLAINED #line:09830ec 
-<<set $currentObject to "Phirakian">>
+Robot: Someone is requesting to board the ship... #line:09830ec
+<<set $scene to 1>>
+<<set_object_phirakian AlienSpawner>>
 <<spawn_object AlienSpawner>>
 ===
 
-title: IntroduceFabricator
+title: PhirakianIntro
 tags:
 ---
-Robot: Let me introduce you to the V.E.F.! #line:0998f5f 
+Phirakian: Greetings to you, human. My name is Pliink, the Phirakian representative #line:PhirakianGreeting 
+<<if $missionExplained == true>>
+-> Welcome aboard, Pliink. Make yourself comfortable #line:0467ecf 
+    Phirakian: You have my gratitude, Captain. Not all diplomats are as welcoming as you #line:0f85694
+    Phirakian: Perhaps Phira would be lucky to have an alliance with your colony after all
+    <<set $phirakiansProposeAlliance to true>>
+-> Hold on, why can I understand you? #line:0cecdad 
+    Phirakian: Simple translation tech developed by Phirakian scientists #line:02e05bf 
+    Phirakian: We call it BUTT, Brilliant Universal Translation Technology #line:0801ca1
+<<else>>
+-> Sorry, who are you? I wasn't expecting any visitors #line:0bb56cb 
+    Phirakian: Who am I? Were you not briefed or are you just stupid #line:053b4f3 
+    Phirakian: I made the effort to come on behalf of Phira for peace talks... #line:0eb5505 
+    Phirakian: And the captain doesn't even know why I'm here! #line:08d5a19 
+-> Welcome Pliink! What brings you to our ship? #line:00fee48 
+    Phirakian: I was... invited... I'm the diplomat... #line:0e82822 
+    Phirakian: Don't tell me you humans are this forgetful #line:07ba4fe 
 
--> What's a V.E.F.? #line:090a799 
-    Robot: Your V.E.F., or Very Elaborate Fabricator, is used to create objects #line:0d6cdce 
+-> I'm sorry if I've offended you. It's been a long journey. Remind me? #line:096ef08 
+    Phirakian: I can forgive your insolance on regard of your efforts at least #line:0ddfaa3 
+    Phirakian: Earth and Phira have made the decision to commence peace talks #line:0052ecd 
+    Phirakian: After years of devesating war, we have come to offer an alliance #line:01d6bd6 
+-> Calm down! You're over reacting! #line:0ca5406 
+    Phirakian: How dare you speak such offense, earthling #line:0b02d53 
+    Phirakian: I've had enough. I shall retreat to Phira and alert our leaders #line:04a0046 
+    Phirakian: I'm sure war is in your planet's future #line:0e21f8e 
 
-Robot: First, lets place it somewhere #line:0983504 
-<<follow_infront Robot>>
-Robot: Stand facing an empty space, you'll need a lot of room #line:058bb3d 
-Robot: Press continue, and I'll place it for you #line:048c973 
-<<place_fabricator ObjectPlacer>>
-Robot: Perfect! #line:0891993 
-<<stop_follow_infront Robot>>
+<<set $missionExplained to true>>   
+<<endif>>
 
--> How does it work? #line:0f61a4e
-    Robot: Whenever you need something, I'll configure it to that object #line:0b51611 
-    Robot: When the green button lights up, its ready #line:08ea309 
-    Robot: Do you want to give it a try? #line:0bc2666 
-    <<set $fabricatorExplained = true>>
-    -> Let's do it! #line:0e22d5c 
-        Robot: Excellent! I'll load up something simple for you #line:0ef307e 
-        <<set $currentFabricatorObject = "donut">>
-        <<jump FabricatorTest>>
-    -> Maybe later #line:0e36bcf 
-        Robot: Of course! Don't be shy to use it as much as you like either #line:0fb849d 
+Phirakian: I'm being called by Phira. I must leave for now
 
+<<set $scene to 2>>
+<<leave Phirakian>>
+<<set_object_glopite AlienSpawner>>
+<<spawn_object AlienSpawner>>
 ===
 
-title: FabricatorTest
+title: GlopiteIntro
 tags:
 ---
-Robot: Just press the button when you're ready! #line:06dfdf4 
-<<set $active = true>>
-<<set_active Fabricator>>
-<<load_object Fabricator>>
+Glopite: Human! Allow me introduce the arrival of the Glopites! #line:0ec92ac 
+Glopite: I will pause so you may applaud #line:0ba3620 
+-> What brings the Glopite here? #line:087f0fe 
+    Glopite: War, human. Terrible war brings us here #line:09cccff 
+-> Greetings Glopites? How may we be of service #line:04176c8 
+    Glopite: We require your help. We face great danger #line:0dfa95e 
+-> We weren't expecting your intrusion #line:0aa9b5d 
+    Glopite: Intrusion? No! No! This is an emergency #line:006237e 
+
+Glopite: Our planet Glopp is being attacked by the Phirakians! #line:0e89aa0
+
+-> What did you do to provoke the Phirakians?
+    Glopite: Provoke? No no!
+    Glopite: The Phirakians attack without reason. They are tyrants
+    <<set $typeOfHelp to "earth's support">>
+-> That's awful! We must prevent this assault
+    Glopite: Many thanks for your concern, captain!
+    Glopite: Your help against their forces would be appreciated greatly
+    <<set $typeOfHelp to "aid for the rebellion">>
+-> What does your planet need?
+    Glopite: Food and medical care
+    Glopite: Many of us are starving or injured
+    <<set $typeOfHelp to "supplies">>
+
+Glopite: Please say you will help us!
+
+-> We will give you {$typeOfHelp}
+    <<set $agreeToHelpGlopites to true>>
+    Glopite: You are a blessing to us, human
+    Glopite: You have given us hope!
+-> We refuse
+    Glopite: I'd heard rumours of an alliance between you
+    Glopite: But I thought it too tragic to be true
+    Glopite: This is a dark day for the Glopites
+
+<<leave Glopite>>
 ===

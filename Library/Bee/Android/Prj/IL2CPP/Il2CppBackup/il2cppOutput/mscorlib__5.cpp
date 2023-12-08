@@ -3809,46 +3809,6 @@ inline void List_1_AddWithResize_m378B392086AAB6F400944FA9839516326B3F7BB8 (List
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalDataStoreElement__ctor_m59A48056CF4FCF72B2272C82AE9E077CA559DD05 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, int64_t ___0_cookie, const RuntimeMethod* method) 
-{
-	{
-		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
-		int64_t L_0 = ___0_cookie;
-		__this->___m_cookie = L_0;
-		return;
-	}
-}
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* LocalDataStoreElement_get_Value_m632EFA28814C4E13861F4F41E9AD5CB87F8D8242 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, const RuntimeMethod* method) 
-{
-	{
-		RuntimeObject* L_0 = __this->___m_value;
-		return L_0;
-	}
-}
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalDataStoreElement_set_Value_m87CF1493A9228ABBAD50D601687350AF5F6F9813 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, RuntimeObject* ___0_value, const RuntimeMethod* method) 
-{
-	{
-		RuntimeObject* L_0 = ___0_value;
-		__this->___m_value = L_0;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_value), (void*)L_0);
-		return;
-	}
-}
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t LocalDataStoreElement_get_Cookie_mED3BF393B659ACB03C8C6C19A7E1959BC3AEBD25 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, const RuntimeMethod* method) 
-{
-	{
-		int64_t L_0 = __this->___m_cookie;
-		return L_0;
-	}
-}
-#ifdef __clang__
-#pragma clang diagnostic pop
-#endif
-#ifdef __clang__
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Winvalid-offsetof"
-#pragma clang diagnostic ignored "-Wunused-variable"
-#endif
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalDataStore__ctor_mF0B68949E727A1D6B00C8E764B2984A0113195FC (LocalDataStore_tFCE524A076B3FEBC2C1D1F7E49370896FF0788CA* __this, LocalDataStoreMgr_t205F1783D5CC2B148E829B5882E5406FF9A3AC1E* ___0_mgr, int32_t ___1_InitialCapacity, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;

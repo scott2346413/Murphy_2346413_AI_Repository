@@ -74,8 +74,10 @@
     <Compile Include="Assets\Samples\Yarn Spinner\2.4.0\3D Speech Bubble\Scripts\YarnCharacterView.cs" />
     <Compile Include="Assets\Samples\Yarn Spinner\2.4.0\Space\Scripts\SpriteSwitcher.cs" />
     <Compile Include="Assets\Scripts\RunToRandomPositions.cs" />
+    <Compile Include="Assets\Scripts\LeaveScript.cs" />
     <Compile Include="Assets\MRTemplateAssets\Scripts\GoalManager.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextTextureFlip.cs" />
+    <Compile Include="Assets\Scripts\NPCManager.cs" />
     <Compile Include="Assets\Scripts\followNearPlayer.cs" />
     <Compile Include="Assets\Samples\Yarn Spinner\2.4.0\3D Speech Bubble\Scripts\Spinner.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scenes\Scripts\LipSyncDemo_SetCurrentTarget.cs" />
@@ -89,7 +91,9 @@
     <Compile Include="Assets\Oculus\LipSync\Scenes\Scripts\LipSyncDemo_Control.cs" />
     <Compile Include="Assets\MRTemplateAssets\Scripts\LaunchProjectile.cs" />
     <Compile Include="Assets\MRTemplateAssets\Scripts\PositionAtStart.cs" />
+    <Compile Include="Assets\Scripts\EndingsManager.cs" />
     <Compile Include="Assets\MRTemplateAssets\Scripts\FadeMaterial.cs" />
+    <Compile Include="Assets\Scripts\ToggleCollider.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\Helpers\OVRLipSyncDebugConsole.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scenes\Scripts\EnableSwitch.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextMorphTarget.cs" />
@@ -99,7 +103,7 @@
     <Compile Include="Assets\Scripts\RandomNavMeshPosition.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextCanned.cs" />
     <Compile Include="Assets\Scripts\2022\XRFireCaster.cs" />
-    <Compile Include="Assets\Scripts\SpawnObject.cs" />
+    <Compile Include="Assets\Scripts\PhirakianMovement.cs" />
     <Compile Include="Assets\MRTemplateAssets\Scripts\VideoTimeScrubControl.cs" />
     <Compile Include="Assets\Scripts\2023\NPC3D.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\Helpers\OVRTouchpad.cs" />
@@ -110,7 +114,7 @@
     <Compile Include="Assets\MRTemplateAssets\Scripts\SpawnedObjectsManager.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\Helpers\OVRNamedArrayAttribute.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncSequence.cs" />
-    <Compile Include="Assets\Scripts\AgentCirclePlayer.cs" />
+    <Compile Include="Assets\Scripts\SpawnAlien.cs" />
     <Compile Include="Assets\MRTemplateAssets\Scripts\XRBlaster.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextBase.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSync.cs" />

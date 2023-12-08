@@ -242,6 +242,7 @@ struct InvalidFilterCriteriaException_tD17761204136217A4644FBA002AE79C00A688ACF;
 struct InvalidOperationException_t5DDE4D49B7405FAAB1E4576F4715A42A3FAD4BAB;
 struct KeyNotFoundException_tCE416EC9BCA9F396A3DFFF86D1B5209BA876079E;
 struct LocalDataStore_tFCE524A076B3FEBC2C1D1F7E49370896FF0788CA;
+struct LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B;
 struct LocalDataStoreHolder_t789DD474AE5141213C2105CE57830ECFC2D3C03F;
 struct LocalDataStoreMgr_t205F1783D5CC2B148E829B5882E5406FF9A3AC1E;
 struct MemberAccessException_t4BB9AF02B906BB4818600FC8988DECA4D37F2EFC;
@@ -991,6 +992,11 @@ struct LocalDataStore_tFCE524A076B3FEBC2C1D1F7E49370896FF0788CA  : public Runtim
 {
 	LocalDataStoreElementU5BU5D_t38A85F342BA8E059EF6F38D335309FFA09C7AD88* ___m_DataTable;
 	LocalDataStoreMgr_t205F1783D5CC2B148E829B5882E5406FF9A3AC1E* ___m_Manager;
+};
+struct LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B  : public RuntimeObject
+{
+	RuntimeObject* ___m_value;
+	int64_t ___m_cookie;
 };
 struct LocalDataStoreHolder_t789DD474AE5141213C2105CE57830ECFC2D3C03F  : public RuntimeObject
 {
@@ -8543,38 +8549,6 @@ IL2CPP_EXTERN_C  bool Single_TryFormat_m0C0B55CAF760803AD91384443998EC7DF9A26E60
 	bool _returnValue;
 	_returnValue = Single_TryFormat_m0C0B55CAF760803AD91384443998EC7DF9A26E60(_thisAdjusted, ___0_destination, ___1_charsWritten, ___2_format, ___3_provider, method);
 	return _returnValue;
-}
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Single_Parse_m621F610BB84997A2E3C4686913F482316CD3E6B8 (String_t* ___0_s, const RuntimeMethod* method) 
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Number_tA71F95D4B9F046BDA97EFA91BC6517925969650A_il2cpp_TypeInfo_var);
-		s_Il2CppMethodInitialized = true;
-	}
-	{
-		String_t* L_0 = ___0_s;
-		if (L_0)
-		{
-			goto IL_000a;
-		}
-	}
-	{
-		ThrowHelper_ThrowArgumentNullException_m05B7DB75576C421D7CA84FA73F84D7E114974CEC(((int32_t)48), NULL);
-	}
-
-IL_000a:
-	{
-		String_t* L_1 = ___0_s;
-		ReadOnlySpan_1_t59614EA6E51A945A32B02AB17FBCBDF9A5C419C1 L_2;
-		L_2 = String_op_Implicit_m7D7FE0449303AF92D8B2A85A06ADC6933B2ECC3A_inline(L_1, NULL);
-		NumberFormatInfo_t8E26808B202927FEBF9064FCFEEA4D6E076E6472* L_3;
-		L_3 = NumberFormatInfo_get_CurrentInfo_m121C9878F777AD81289C7B2BF589293E509FD9B4(NULL);
-		il2cpp_codegen_runtime_class_init_inline(Number_tA71F95D4B9F046BDA97EFA91BC6517925969650A_il2cpp_TypeInfo_var);
-		float L_4;
-		L_4 = Number_ParseSingle_m6BDFA896DEF6E6444EEE45B088D7E328210CDEAF(L_2, ((int32_t)231), L_3, NULL);
-		return L_4;
-	}
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float Single_Parse_mF40465AC387D690175D63EFFF44B0E810C090786 (String_t* ___0_s, RuntimeObject* ___1_provider, const RuntimeMethod* method) 
 {
@@ -31137,6 +31111,46 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR LocalDataStore_tFCE524A076B3FEBC2C1D1F7E49370
 {
 	{
 		LocalDataStore_tFCE524A076B3FEBC2C1D1F7E49370896FF0788CA* L_0 = __this->___m_Store;
+		return L_0;
+	}
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalDataStoreElement__ctor_m59A48056CF4FCF72B2272C82AE9E077CA559DD05 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, int64_t ___0_cookie, const RuntimeMethod* method) 
+{
+	{
+		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
+		int64_t L_0 = ___0_cookie;
+		__this->___m_cookie = L_0;
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* LocalDataStoreElement_get_Value_m632EFA28814C4E13861F4F41E9AD5CB87F8D8242 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, const RuntimeMethod* method) 
+{
+	{
+		RuntimeObject* L_0 = __this->___m_value;
+		return L_0;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalDataStoreElement_set_Value_m87CF1493A9228ABBAD50D601687350AF5F6F9813 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, RuntimeObject* ___0_value, const RuntimeMethod* method) 
+{
+	{
+		RuntimeObject* L_0 = ___0_value;
+		__this->___m_value = L_0;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___m_value), (void*)L_0);
+		return;
+	}
+}
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t LocalDataStoreElement_get_Cookie_mED3BF393B659ACB03C8C6C19A7E1959BC3AEBD25 (LocalDataStoreElement_tB189C937CAD74ED44C7644663CEDA7B2EDDDB46B* __this, const RuntimeMethod* method) 
+{
+	{
+		int64_t L_0 = __this->___m_cookie;
 		return L_0;
 	}
 }

@@ -27,6 +27,9 @@ Galactic Encounters is a mixed reality experience that seamlessly blends storyte
 
 ## Media
 
+Watch Video
+[![Watch the video](https://img.youtube.com/vi/MNHew7ULaBM/maxresdefault.jpg)](https://youtu.be/MNHew7ULaBM)
+
 ## Installation
 
 To get started with Galactic Encounters, follow these steps:

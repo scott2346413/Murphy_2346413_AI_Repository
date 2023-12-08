@@ -1478,10 +1478,10 @@ GameObject:
   - component: {fileID: 7167107657957373213}
   - component: {fileID: 2285873576330236363}
   - component: {fileID: -2396731079603022711}
-  - component: {fileID: 5624743137505137892}
   - component: {fileID: 8425494232197379522}
   - component: {fileID: 8712868769069701090}
   - component: {fileID: 1859943231568500175}
+  - component: {fileID: 7594519892114882736}
   m_Layer: 0
   m_Name: Phirakian
   m_TagString: Untagged
@@ -1549,22 +1549,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5624743137505137892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7511299244284161959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a8db6bdc6739a49858d4e3cf3b0fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 2285873576330236363}
-  player: {fileID: 0}
-  distanceFromPlayer: 1.5
-  spawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &8425494232197379522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,6 +1615,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7594519892114882736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511299244284161959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a13ebfac96998c4bb6272686043731d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 2285873576330236363}
+  player: {fileID: 0}
+  model: {fileID: 5490671646078665479}
+  standOffset: {x: 1, y: 0, z: 2}
+  animator: {fileID: 0}
+  follow: 1
 --- !u!1 &7679334411942411139
 GameObject:
   m_ObjectHideFlags: 0

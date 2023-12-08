@@ -19,12 +19,31 @@ tags:
 <<declare $agreeToHelpGlopites = false>>
 <<declare $phirakiansInsulted = false>>
 
+//Endings
+//1 = Cold War. The Phirakians proceed to conquer Glopp and torment the Glopites for decades.
+//Meanwhile, Earth and Phira enter a cold war, neither daring enough to provoke the other, remaining in constant fear of a new war
+//2 = Continued War. The Phirakians fight hard against the humans and Glopp for many years.
+//The War is long and sufferable. Eventually a peace breaks though both sides suffer heavily
+//3 = A Sturdy Alliance. Glopp is betrayed by earth and the Phirakians take it over with ease. Earth even provides Phira with weapons
+//Continuing on, Phira wage tyranny and cruelty across the galaxy, and earth profits greatly
+//4 = Continued Talks. While Phira continue to assault Glopp, peace talks continue with earth. They reach a long and complex peace agreement
+//which opens up trade and even introduces new rights to Phirakians. Although Phira are left free to continue assaulting helpless planets and earth may not intervene
+//5 = End Of The World. Phira hold back on Glopp and redirect their full force against earth. The humans fight hard
+//but are helpless against such overwhelming attacks. Phira soon wipes out earth and is free to take over the galaxy
+//6 = Conquerers. Earth joins Phira as savage conquerers. They herald terror on Glopp and then across the galaxy. A rebellion alliance forms
+//Amongst the surviving planets but it is crushed without hesitation. The Phira-Earth empire reigns corruption for centuries
+//7 = The Liberation. A strong and thriving alliance is formed between Phira and Earth. Phira are respectful and more open
+//to Earth's pleas to retreat from Glopp. After much work, the Phirakians agree to peace with Glopp too. As the years continue,
+//both Phira and Earth become Utopias of peace and technology advances far beyond the rest of the galaxy. The people celebrate
+<<declare $ending = 0>>
+
 <<declare $typeOfHelp = "">>
 ===
 
 title: Robot
 tags:
 ---
+
 <<if $scene == 0>>
 <<jump RobotIntro>>
 <<elseif $scene == 3>>
@@ -80,6 +99,7 @@ Robot: They will be onboard imminently #line:0d6907c
 <<set $scene to 1>>
 <<set_object_phirakian AlienSpawner>>
 <<spawn_object AlienSpawner>>
+<<toggle_collider Robot>>
 ===
 
 title: PhirakianIntro
@@ -108,6 +128,7 @@ Phirakian: I can only stay briefly so shall we begin #line:PhirakianSound
     Phirakian: I can forgive your insolance on regard of your efforts at least #line:0ddfaa3
     Phirakian: Earth and Phira have made the decision to commence peace talks #line:0052ecd
     Phirakian: After years of devesating war, we have come to offer an alliance #line:01d6bd6
+    <<set $phirakiansProposeAlliance to true>>
 -> Calm down! You're over reacting! #line:0ca5406 
     Phirakian: How dare you speak such offense, earthling #line:0b02d53
     Phirakian: I've had enough. I shall retreat to Phira and alert our leaders #line:04a0046
@@ -128,7 +149,7 @@ Phirakian: I'm being called by Phira. I will return later #line:0e0d65a
 title: GlopiteIntro
 tags:
 ---
-Glopite: Human! Allow me introduce the arrival of the Glopites! #line:GlopiteGreeting 
+Glopite: Human! Allow me to introduce the arrival of the Glopites! #line:GlopiteGreeting 
 Glopite: I will pause so you may applaud #line:GlopiteSound
 -> What brings the Glopite here? #line:087f0fe
     Glopite: War, human. Terrible war brings us here #line:09cccff #line:GlopiteSound
@@ -165,7 +186,7 @@ Glopite: Please say you will help us! #line:053ca7a
 
 <<leave GroupOfGlopite>>
 <<set $scene to 3>>
-<<start_dialogue Robot>>
+<<toggle_collider Robot>>
 ===
 
 title: RobotFinal
@@ -205,8 +226,167 @@ Robot: Do you intend to propse an alliance #line:04197bc
     Robot: Admirable, though you shall make many enemies #line:040cb18 
 
 Robot: The Phirakian have returned and will board momentarily #line:06ed30c 
-Robot: Good luck Captain #line:0764a87 
+Robot: Good luck Captain #line:0764a87
 <<set $scene to 3>>
 <<set_object_phirakian_general AlienSpawner>>
 <<spawn_object AlienSpawner>>
+<<toggle_collider Robot>>
+===
+
+title: PhirakianFinal
+tags:
+---
+Hefa: My name is General Hefa and you shall address me as such, human #line:HefaIntro
+Hefa: We have many matters that desperately need to be decided #line:PhirakianSound2
+<<if $agreeToHelpGlopites == true>>
+    <<if $phirakiansInsulted == true>>
+        Hefa: Your disrespect is unthinkable
+        Hefa: First you treat our representative with no respect
+        Hefa: Then agree to give {$typeOfHelp} to the Glopites
+        Hefa: A Vile and Primative race
+        -> The Glopites are more worthy of respect than bugs like you
+            Hefa: Such insolence from such a tiny thing
+            Hefa: You should be careful I don't squash you
+        -> You overstep your boundary
+            Hefa: Your stubborness and arrogance may be tolerated on earth
+            Hefa: But on Phira you would be hung
+        -> I meant no offense. Only to put earth's best interests first
+            Hefa: Selfish in nature. A classic human trait
+
+        Hefa: After much debate, we have only two options for you human
+        Hefa: Retreat to earth and recall any aid to Glopp
+        Hefa: Refuse and the Phirakian-Human war will continue for another agree
+        Hefa: Choose wisely
+        -> We'll recall our aid immediately. Glopp is yours
+            Hefa: Wise choice. You have postponed our hostilities for now
+            <<set $ending to 1>>
+            <<set_ending_1 Display>>
+        -> Earth will never back down from vicious tyrants
+            Hefa: Your ego outgrows you, fool
+            Hefa: Your planet will condemn you when war continues
+            <<set $ending to 2>>
+            <<set_ending_2 Display>>
+    <<elseif $phirakiansProposeAlliance == true>>
+        Hefa: We have heard of your new found alliance with Glopp
+        Hefa: This is concerning for our council
+        Hefa: We are sure earth made a mistake and did not mean to insult Phira
+        -> No mistake here, General Hefa
+            Hefa: Then you may forget our alliance
+            Hefa: This decision will have a great future impact
+            Hefa: I urge you reconsider
+        -> The Glopites are innocent. This invasion is unjust
+            Hefa: THe Glopites are mearly slime. This is only pest control
+        -> We can be persuaded to back off
+            Hefa: You should know there is a hefty reward if you do
+            Hefa: This invasion will be most profitable, as will our alliance
+
+        Hefa: So will you recall your forces from Glopp
+        Hefa: Our alliance is dependent on this
+        -> The alliance is more important. Glopp is yours
+            Hefa: A diplomatic and well-thought decision
+            Hefa: This is a great day for peace
+            <<set $ending to 3>>
+            <<set_ending_3 Display>>
+        -> We stand with Glopp. Screw your alliance
+            Hefa: Then war shall continue to reign between us
+            Hefa: I am disappointed. I had such high hopes
+            <<set $ending to 2>>
+            <<set_ending_2 Display>>
+    <<else>>
+        Hefa: There is one matter in particular that we find intriguing
+        Hefa: An alliance with the Glopites?
+        Hefa: A strange development
+        -> A necessary one. The Glopites were in need
+            Hefa: The Glopites do not need your assistance
+            Hefa: They need our rule. Our law. Our more civilised way of living
+            Hefa: They will thrive beneath us
+        -> We are troubled by your aggression towards them
+            Hefa: We only wish to bring order to Glopp
+            Hefa: Like we do to all savage planets
+        -> Glopite is meerly a pawn
+            Hefa: I like your thinking. Very Phirakian
+            Hefa: Though it is important you cease your intervention
+            Hefa: These affairs are ours alone
+        
+        Hefa: Cut ties with Glopp, and you shall be awarded kindly
+        Hefa: Continue, and we will have no choice but to take care of earth
+        -> Very well. We shall stay out of your way
+            Hefa: We appreciate your consideration
+            Hefa: As for earth, perhaps further peace talks are possible
+            <<set $ending to 4>>
+            <<set_ending_4 Display>>
+        -> We cannot abandon them
+            Hefa: And we cannot give up
+            Hefa: If earth insists on being a parasite it will be taken care of
+            <<set $ending to 5>>
+            <<set_ending_5 Display>>
+    <<endif>>
+<<else>>
+    <<if $phirakiansInsulted == true>>
+        Hefa: I've been told of your previous insults to my comrade
+        Hefa: Though we were pleased to hear you declined the Glopite's plea for help
+        Hefa: Such a pathetic excuse for a species
+        -> They're not pathetic
+            Hefa: Wrong. They are weak. They are meager.
+            Hefa: Sometimes I get sick just looking at them
+            Hefa: Sorry things
+        -> I didn't do it for your joke of an empire
+            Hefa: You ought to be more careful with your words
+            Hefa: We are still yet to decide earth's fate
+        -> I was hoping to make up for my earlier slander
+            Hefa: This is the kind of respect we expected all along
+            Hefa: Though we cannot forget such rudeness straight away
+
+        Hefa: Phira comes with an offer we believe is irrefusable
+        Hefa: Join our assault on Glopp
+        Hefa: We shall share the spoils of war
+        Hefa: And earth will join Phira in our domination of the galaxy
+        Hefa: Turn us down, and earth's fate remains uncertain
+
+        -> We would never be so heartless
+            Hefa: Your emotions weaken you
+            Hefa: If this is the fate you choose, so be it
+            <<set $ending to 1>>
+            <<set_ending_1 Display>>
+        -> We relish the opportunity. Glopp shall fall
+            Hefa: A strong declaration, friend
+            Hefa: We welcome earth in their new age as conquerers
+            <<set $ending to 6>>
+            <<set_ending_6 Display>>
+    <<else>>
+        Hefa: We applaud your response to the Glopites
+        Hefa: They were greedy and selfish to ask you
+        Hefa: Our representative speaks highly of you
+        Hefa: We would be honoured to have an alliance with earth
+        -> What are the terms?
+            Hefa: Peace between our worlds. Opportunities for trade routes
+            Hefa: Our scientists can work together to form new medicines
+            Hefa: Military might can be shared to better protect our worlds
+            Hefa: We guarantee earth will become a Utopia
+        -> We are hesitant
+            Hefa: Please put your apprehensions aside
+            Hefa: Phira can offer many benefits to earth
+            Hefa: And we hope earth can share some of their own culture in return
+        -> You should be ashamed of your assault on Glopp
+            Hefa: It is a necessary thing
+            Hefa: You may not understand, but Glopites are not as developed as we are
+            Hefa: And hence we must show them a better way
+        
+        Hefa: We are eager to hear your answer
+        Hefa: Will you accept our offer of alliance
+        Hefa: Or turn down this rare opportunity
+        -> We accept your alliance
+            Hefa: Excellent! I look forward to working closely together
+            <<set $ending to 7>>
+            <<set_ending_7 Display>>
+        -> We refuse your alliance
+            Hefa: Your answer disappoints
+            Hefa: We shall continue to attempt relations with your planet
+            Hefa: And hope one day you change your mind
+            <<set $ending to 4>>
+            <<set_ending_4 Display>>
+    <<endif>>
+<<endif>>
+
+<<leave PhirakianGeneral>>
 ===

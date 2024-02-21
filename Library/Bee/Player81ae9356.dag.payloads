@@ -996,7 +996,7 @@ Payload for "WriteText C:/Users/FSE_VR23/Documents/AI/Library/Bee/Android/Prj/IL
 
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">AI</string>
+  <string name="app_name">Galactic Encounters</string>
   <string name="game_view_content_description">Game view</string>
 </resources>    
 
